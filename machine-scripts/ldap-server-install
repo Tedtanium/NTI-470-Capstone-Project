@@ -1,0 +1,4 @@
+#!/bin/bash
+yum install openldap openldap-clients openldap-servers -y
+#Password generated with slappasswd: fQPWzXolGfG4eRj6OBKMNH8ae9qi40QS
+#Changed lines []: olcSuffix: dc=linuxtechlab,dc=local + olcRootDN: cn=Manager,dc=linuxtechlab,dc=local
