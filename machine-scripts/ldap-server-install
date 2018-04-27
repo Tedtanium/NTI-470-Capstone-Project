@@ -2,3 +2,15 @@
 yum install openldap openldap-clients openldap-servers -y
 #Password generated with slappasswd: fQPWzXolGfG4eRj6OBKMNH8ae9qi40QS
 #Changed lines []: olcSuffix: dc=linuxtechlab,dc=local + olcRootDN: cn=Manager,dc=linuxtechlab,dc=local
+
+
+
+echo "dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+replace: olcSuffix
+olcSuffix: dc=capstone,dc=local
+
+dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+replace: olcRootDN
+olcRootDN: cn=ldapadm,dc=capstone,dc=local
