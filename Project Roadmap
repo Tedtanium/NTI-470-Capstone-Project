@@ -14,3 +14,6 @@ Plan B: If traffic cannot move to the outside in GNS3, then I will adopt more of
 Plan B (continued): Might even look into how to make a Linux-borne LDAP server compatible with a Windows Server VM and give that VM a role that is commonly seen in the working world.
 
 More to come as the project develops.
+
+
+Spine as a possible way to speed up polling via Cacti? Could be a good rabbit hole.
