@@ -244,7 +244,7 @@ $servers = new Datastore();
 $servers->newServer('ldap_pla');
 /* A convenient name that will appear in the tree viewer and throughout
    phpLDAPadmin to identify this LDAP server to users. */
-$servers->setValue('server','name','NTI-310 Example LDAP Server');
+$servers->setValue('server','name','Capstone Project LDAP Server');
 /* Examples:
    'ldap.example.com',
    'ldaps://ldap.example.com/',
