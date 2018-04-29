@@ -40,14 +40,14 @@ olcRootDN: cn=ldapadm,dc=capstone,dc=local
 dn: olcDatabase={2}hdb,cn=config
 changetype: modify
 replace: olcRootPW
-olcRootPW: $newhash" >> db.ldif
+olcRootPW: $newhash" >> /db.ldif
 
 echo 'dn: olcDatabase={1}monitor,cn=config
 changetype: modify
 replace: olcAccess
-olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external, cn=auth" read by dn.base="cn=ldapadm,dc=capstone,dc=local"
+olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external, cn=auth" read by dn.base="cn=ldapadm,dc=capstone,dc=local" read by * none' > /monitor.ldif
 
-ldapmodify -Y EXTERNAL  -H ldapi:/// -f monitor.ldif
+ldapmodify -Y EXTERNAL  -H ldapi:/// -f /monitor.ldif
 
 #Certgen.
 
@@ -63,10 +63,10 @@ olcTLSCertificateFile: /etc/openldap/certs/capstoneldapcert.pem
 dn: cn=config
 changetype: modify
 replace: olcTLSCertificateKeyFile
-olcTLSCertificateKeyFile: /etc/openldap/certs/capstoneldapkey.pem" > certs.ldif
+olcTLSCertificateKeyFile: /etc/openldap/certs/capstoneldapkey.pem" > /certs.ldif
 
 
-ldapmodify -Y EXTERNAL  -H ldapi:/// -f certs.ldif
+ldapmodify -Y EXTERNAL  -H ldapi:/// -f /certs.ldif
 
 unalias cp
 
@@ -88,8 +88,8 @@ objectClass: organizationalUnit
 ou: People
 dn: ou=Group,dc=capstone,dc=local
 objectClass: organizationalUnit
-ou: Group" > base.ldif
+ou: Group" > /base.ldif
 
-ldapadd -x -W -D "cn=ldapadm,dc=capstone,dc=local" -f base.ldif -y /root/ldap_admin_pass
+ldapadd -x -W -D "cn=ldapadm,dc=capstone,dc=local" -f /base.ldif -y /root/ldap_admin_pass
 
 #Use [cat /root/ldap_admin_pass] to retrieve the password for use in the web interface.
