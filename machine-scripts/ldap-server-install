@@ -68,8 +68,9 @@ olcTLSCertificateKeyFile: /etc/openldap/certs/capstoneldapkey.pem" > /certs.ldif
 
 ldapmodify -Y EXTERNAL  -H ldapi:/// -f /certs.ldif
 
-unalias cp
 
+#unalias cp
+# ^ Doesn't seem to work in an automated script.
 
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif 
