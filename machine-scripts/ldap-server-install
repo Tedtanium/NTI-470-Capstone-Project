@@ -44,6 +44,8 @@ changetype: modify
 replace: olcRootPW
 olcRootPW: $newhash" >> /db.ldif
 
+ldapmodify -Y EXTERNAL  -H ldapi:/// -f db.ldif
+
 echo 'dn: olcDatabase={1}monitor,cn=config
 changetype: modify
 replace: olcAccess
@@ -96,7 +98,11 @@ dn: ou=Group,dc=capstone,dc=local
 objectClass: organizationalUnit
 ou: Group" > /base.ldif
 
+setenforce 0
+
 ldapadd -x -W -D "cn=ldapadm,dc=capstone,dc=local" -f /base.ldif -y /root/ldap_admin_pass
+
+
 
 #Use [cat /root/ldap_admin_pass] to retrieve the password for use in the web interface.
 #Further troubleshooting: Run the last line to test, otherwise use [grep startup-script /var/log/messsages].
