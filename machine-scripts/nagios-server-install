@@ -1,8 +1,10 @@
 #!/bin/bash
+yum install -y httpd
+systemctl enable httpd
+systemctl start httpd
 yum install nagios -y
 systemctl enable nagios
 systemctl start nagios
-yum install -y httpd
 setenforce 0
 yum install -y nrpe
 systemctl enable nrpe
