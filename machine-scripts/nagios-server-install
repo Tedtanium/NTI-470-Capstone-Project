@@ -13,7 +13,7 @@ yum install nagios-plugins-all -y
 yum -y install nagios-plugins-nrpe
 
 yum install -y nagios-selinux -y
-systemctl restart nagios
+
 setenforce 1
 
 #todo: sed statements disabling the login process in /etc/nagios/cgi.cfg (enforcement = 0), and commenting out all authentication in /etc/httpd/conf.d/nagios.conf.
@@ -23,6 +23,8 @@ sed -i 's/AuthType/#AuthType/g' /etc/httpd/conf.d/nagios.conf
 sed -i 's/AuthUserFile/#AuthUserFile/g' /etc/httpd/conf.d/nagios.conf
 sed -i 's/Require valid/#Require valid/g' /etc/httpd/conf.d/nagios.conf
 
+systemctl restart httpd
+systemctl restart nagios
 
 echo '########### NRPE CONFIG LINE #######################
 define command{
