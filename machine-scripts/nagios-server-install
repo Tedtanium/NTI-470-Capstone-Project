@@ -15,6 +15,12 @@ systemctl restart nagios
 setenforce 1
 
 #todo: sed statements disabling the login process in /etc/nagios/cgi.cfg (enforcement = 0), and commenting out all authentication in /etc/httpd/conf.d/nagios.conf.
+sed -i 's/use_authentication=1/use_authentication=0/g' /etc/nagios/cgi.cfg
+sed -i 's/AuthName/#Authname/g' /etc/httpd/conf.d/nagios.conf
+sed -i 's/AuthType/#AuthType/g' /etc/httpd/conf.d/nagios.conf
+sed -i 's/AuthUserFile/#AuthUserFile/g' /etc/httpd/conf.d/nagios.conf
+sed -i 's/Require/#Require/g' /etc/httpd/conf.d/nagios.conf
+
 
 echo '########### NRPE CONFIG LINE #######################
 define command{
