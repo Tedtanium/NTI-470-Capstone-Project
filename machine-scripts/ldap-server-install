@@ -15,11 +15,15 @@ yum install phpldapadmin -y
 
 setsebool -P httpd_can_connect_ldap on
 
+systemctl start httpd
+systemctl enable httpd
+
 sed -i 's,Require local,#Require local\n   Require all granted,g' /etc/httpd/conf.d/phpldapadmin.conf
 
+unalias cp
 
 wget https://raw.githubusercontent.com/Tedtanium/NTI-470-Capstone-Project/master/machine-scripts/configs/ldap/config.php
-cp /config.php /etc/phpldapadmin/config.php -y
+cp /config.php /etc/phpldapadmin/config.php
 chown ldap:apache /etc/phpldapadmin/config.php
 
 systemctl restart httpd.service
@@ -73,8 +77,6 @@ olcTLSCertificateKeyFile: /etc/openldap/certs/capstoneldapkey.pem" > /certs.ldif
 ldapmodify -Y EXTERNAL  -H ldapi:/// -f /certs.ldif
 
 
-#unalias cp
-# ^ Doesn't seem to work in an automated script.
 
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif 
