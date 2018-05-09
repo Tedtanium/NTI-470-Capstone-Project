@@ -5,7 +5,7 @@ apt-get install nrpe-server nagios-plugins -y
 apt-get install nagios-nrpe-server nagios-plugins -y
 yum install nrpe-selinux -y
 yum install nrpe -y
-yum install nagios-plugins-users nagios-plugins-load nagios-plugins-swap nagios-plugins-disk nagios-plugins-procs -y
+yum install nagios-plugins-all -y
 
 systemctl enable nrpe
 
