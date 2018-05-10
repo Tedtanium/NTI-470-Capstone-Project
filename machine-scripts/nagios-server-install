@@ -1,4 +1,5 @@
 #!/bin/bash
+if [ -e /etc/nagios/objects/commands.cfg ]; then exit 0; fi
 yum install -y httpd
 systemctl enable httpd
 systemctl start httpd
