@@ -1,5 +1,5 @@
 #!/bin/bash
-
+if [ -e /etc/httpd/conf.d/cacti.conf ]; then exit 0; fi
 yum -y install cacti              
 yum install mariadb-server -y
                                    
