@@ -1,0 +1,7 @@
+yum install -y net-snmp
+apt-get install snmp -y
+
+systemctl enable snmpd
+systemctl start snmpd
+
+#Yes, it's that easy.
