@@ -2,7 +2,17 @@
 
 if [ -e /etc/ldap.conf ]; then exit 0; fi
 
+sudo apt-add-repository universe
+
 apt-get update
+
+declare -a PKG_LIST=(python-google-compute-engine \
+python3-google-compute-engine \
+google-compute-engine-oslogin \
+gce-compute-image-packages)
+for pkg in ${PKG_LIST[@]}; do
+   sudo apt install -y $pkg || echo "Not available: $pkg"
+done
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get --yes install libpam-ldap nscd
