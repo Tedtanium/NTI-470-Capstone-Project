@@ -1,31 +1,30 @@
 #!/bin/bash
 
-yum install nfs-utils openldap openldap-clients nss_ldap -y
+yum install nfs-utils openldap openldap-clients -y
 
 #LDAP config stuff.
-sed -i 's/passwd:     files sss/passwd:     files ldap/g' /etc/nsswitch.conf
-sed -i 's/shadow:     files sss/shadow:     files ldap/g' /etc/nsswitch.conf
-sed -i 's/group:      files sss/group:     files ldap/g' /etc/nsswitch.conf
-sed -i 's/automount:  files nisplus sss/automount:  files nisplus ldap/g' /etc/nsswitch.conf
 
-authconfig --enableldap --enableldapauth --ldapserver=ldap://10.142.0.2/ --ldapbasedn="base dc=capstone,dc=local" --enablecache --disablefingerprint --kickstart 
+#sed -i 's/passwd:     files sss/passwd:     files ldap/g' /etc/nsswitch.conf
+#sed -i 's/shadow:     files sss/shadow:     files ldap/g' /etc/nsswitch.conf
+#sed -i 's/group:      files sss/group:     files ldap/g' /etc/nsswitch.conf
+#sed -i 's/automount:  files nisplus sss/automount:  files nisplus ldap/g' /etc/nsswitch.conf
+
+#authconfig --enableldap --enableldapauth --ldapserver=ldap://10.142.0.2/ --ldapbasedn="base dc=capstone,dc=local" --enablecache --disablefingerprint --kickstart 
 
 echo -e '\n
-ldap://10.142.0.2
+URI ldap://10.142.0.2
 base dc=capstone,dc=local' >> /etc/openldap/ldap.conf
 
 systemctl restart nscd
 
-echo -e 'LDAP_URI="ldap://10.142.0.2/"
-SEARCH_BASE="ou=base dc=capstone,dc=local"
-MAP_OBJECT_CLASS="nisMap"
-ENTRY_OBJECT_CLASS="nisObject"
-MAP_ATTRIBUTE="nisMapName"
-ENTRY_ATTRIBUTE="cn"' >> /etc/sysconfig/autofs
+#echo -e 'LDAP_URI="ldap://10.142.0.2/"
+#SEARCH_BASE="ou=base dc=capstone,dc=local"
+#MAP_OBJECT_CLASS="nisMap"
+#ENTRY_OBJECT_CLASS="nisObject"
+#MAP_ATTRIBUTE="nisMapName"
+#ENTRY_ATTRIBUTE="cn"' >> /etc/sysconfig/autofs
 
 systemctl restart nscd
-systemctl restart autofs
-systemctl enable autofs
 
 # ^ Currently broken?
 
