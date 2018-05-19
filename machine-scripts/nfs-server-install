@@ -26,7 +26,7 @@ systemctl start nfs-idmap
 #NFS LDAP integration begins here.
 wget https://raw.githubusercontent.com/Tedtanium/NTI-470-Capstone-Project/master/machine-scripts/nfs/nfsautoupdate.sh
 
-crontab -l 2>/dev/null; echo "* * * * * /nfsautoupdate.sh" | crontab -
+crontab -l 2>/dev/null; echo "* * * * * /bin/sh /nfsautoupdate.sh" | crontab -
 
 
 
