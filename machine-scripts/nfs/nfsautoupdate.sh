@@ -29,9 +29,6 @@ do
 
 #Changes ownership of /home/$uservariable to the user.
     chown  $uservariable /home/$uservariable
-    
-#Puts the name of the new directory into /etc/exports.
-    echo "/home/$uservariable   *(rw,sync)" >> /etc/exports
 #End of the if check.
   fi
 #End of for loop.
