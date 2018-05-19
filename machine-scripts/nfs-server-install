@@ -24,10 +24,10 @@ systemctl start nfs-lock
 systemctl start nfs-idmap
 
 #NFS LDAP integration begins here.
-wget <file>
+wget https://raw.githubusercontent.com/Tedtanium/NTI-470-Capstone-Project/master/machine-scripts/nfs/nfsautoupdate.sh
 
-#Echoes in a cron job for automatic updating of LDAP clients.
+crontab -l 2>/dev/null; echo "* * * * * /nfsautoupdate.sh" | crontab -
 
-echo "/var/nfsshare/testing   *(rw,sync)" >> /etc/exports
+
 
 systemctl restart nfs-server
