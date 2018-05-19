@@ -3,8 +3,6 @@
 #This should be run every minute as a cron job.
 
 #Greps for LDAP users, and stores their usernames in a file. 
-
-
 #This one overwrites the old ones, as otherwise the function would get drastically longer with each and every run of it.
 getent passwd | grep 500 | awk -F ":" '{print $1}' > ldap-users
 
