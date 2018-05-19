@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#Made to work with both Ubuntu and CentOS (yum and apt).
+apt-get install nfs-client -y
+yum install nfs-client -y
+
+apt-get install autofs -y
+yum install autofs -y
+
+#NEXT: Figure out autofs.
+
+mkdir /mnt/test 
+echo "10.142.0.8:/home/        /home       nfs     defaults 0 0" >> /etc/fstab
