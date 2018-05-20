@@ -4,10 +4,6 @@
 apt-get install nfs-client -y
 yum install nfs-client -y
 
-apt-get install autofs -y
-yum install autofs -y
-
-
 mkdir /mnt/test 
 
 #points the NFS client towards the server, then specifies the directory to be mounted. 
