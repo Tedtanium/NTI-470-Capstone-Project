@@ -104,7 +104,11 @@ setenforce 0
 
 ldapadd -x -W -D "cn=ldapadm,dc=capstone,dc=local" -f /base.ldif -y /root/ldap_admin_pass
 
+wget https://raw.githubusercontent.com/Tedtanium/NTI-470-Capstone-Project/master/machine-scripts/client-scripts/nagios-client
+bash nagios-client
 
+wget https://raw.githubusercontent.com/Tedtanium/NTI-470-Capstone-Project/master/machine-scripts/client-scripts/cacti-client
+bash cacti-client
 
 #Use [cat /root/ldap_admin_pass] to retrieve the password for use in the web interface.
 #Further troubleshooting: Run the last line to test, otherwise use [grep startup-script /var/log/messsages].
