@@ -31,3 +31,10 @@ crontab -l 2>/dev/null; echo "* * * * * /bin/sh /nfsautoupdate.sh" | crontab -
 exportfs -a
 
 systemctl restart nfs-server
+
+wget https://raw.githubusercontent.com/Tedtanium/NTI-470-Capstone-Project/master/machine-scripts/client-scripts/nagios-client
+bash nagios-client
+
+wget https://raw.githubusercontent.com/Tedtanium/NTI-470-Capstone-Project/master/machine-scripts/client-scripts/cacti-client
+bash cacti-client
+
